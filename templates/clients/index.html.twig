@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients index{% endblock %}
+
+{% block body %}
+    <h1>Clients index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomPrenom</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Birthday</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.NomPrenom }}</td>
+                <td>{{ client.phone }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.birthday ? client.birthday|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_clients_show', {'id': client.id}) }}"><button type="button" class="btn btn-primary">show</button></a>
+                    <a href="{{ path('app_clients_edit', {'id': client.id}) }}"><button type="button" class="btn btn-dark">edit</button></a>
+                    <a href="{{ path('app_clients_delete', {'id': client.id}) }}"><button type="button" class="btn btn-dark disabled">delete</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_clients_new') }}"><button type="button" class="btn btn-primary">add new client</button></a>
+{% endblock %}

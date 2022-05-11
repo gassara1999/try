@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CoachingPrive index{% endblock %}
+
+{% block body %}
+    <h1>CoachingPrive index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateSeance</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coaching_prive in coaching_prives %}
+            <tr>
+                <td>{{ coaching_prive.id }}</td>
+                <td>{{ coaching_prive.DateSeance ? coaching_prive.DateSeance|date('Y-m-d') : '' }}</td>
+                <td>{{ coaching_prive.DateDebut ? coaching_prive.DateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ coaching_prive.DateFin ? coaching_prive.DateFin|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_coaching_prive_show', {'id': coaching_prive.id}) }}"><button type="button" class="btn btn-primary">show</button></a>
+                    <a href="{{ path('app_coaching_prive_edit', {'id': coaching_prive.id}) }}"><button type="button" class="btn btn-dark">edit</button></a>
+                    <a href="{{ path('app_coaching_prive_edit', {'id': coaching_prive.id}) }}"><button type="button" class="btn btn-dark disabled">delete</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_coaching_prive_new') }}"><button type="button" class="btn btn-primary">add new private coaching</button></a>
+{% endblock %}

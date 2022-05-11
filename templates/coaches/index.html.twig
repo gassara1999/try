@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coaches index{% endblock %}
+
+{% block body %}
+    <h1>Coaches index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomCoach</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Birthday</th>
+                <th>Salary</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coach in coaches %}
+            <tr>
+                <td>{{ coach.id }}</td>
+                <td>{{ coach.NomCoach }}</td>
+                <td>{{ coach.phone }}</td>
+                <td>{{ coach.email }}</td>
+                <td>{{ coach.birthday ? coach.birthday|date('Y-m-d') : '' }}</td>
+                <td>{{ coach.salary }}</td>
+                <td>
+                    <a href="{{ path('app_coaches_show', {'id': coach.id}) }}"><button type="button" class="btn btn-primary">show</button></a>
+                    <a href="{{ path('app_coaches_edit', {'id': coach.id}) }}"><button type="button" class="btn btn-dark">edit</button></a>
+                    <a href="{{ path('app_coaches_delete', {'id': coach.id}) }}"><button type="button" class="btn btn-dark disabled">delete</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_coaches_new') }}"><button type="button" class="btn btn-primary">add new coach</button> </a>
+{% endblock %}

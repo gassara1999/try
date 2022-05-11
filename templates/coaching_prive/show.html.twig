@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CoachingPrive{% endblock %}
+
+{% block body %}
+    <h1>CoachingPrive</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ coaching_prive.id }}</td>
+            </tr>
+            <tr>
+                <th>DateSeance</th>
+                <td>{{ coaching_prive.DateSeance ? coaching_prive.DateSeance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateDebut</th>
+                <td>{{ coaching_prive.DateDebut ? coaching_prive.DateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFin</th>
+                <td>{{ coaching_prive.DateFin ? coaching_prive.DateFin|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_coaching_prive_index') }}">back to list</a>
+
+    <a href="{{ path('app_coaching_prive_edit', {'id': coaching_prive.id}) }}">edit</a>
+
+    {{ include('coaching_prive/_delete_form.html.twig') }}
+{% endblock %}

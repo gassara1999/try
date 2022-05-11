@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeAbonnement index{% endblock %}
+
+{% block body %}
+    <h1>TypeAbonnement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_abonnement in type_abonnements %}
+            <tr>
+                <td>{{ type_abonnement.id }}</td>
+                <td>{{ type_abonnement.type }}</td>
+                <td>{{ type_abonnement.prix }}</td>
+                <td>{{ type_abonnement.description }}</td>
+                <td>
+                    <a href="{{ path('app_type_abonnement_show', {'id': type_abonnement.id}) }}"><button type="button" class="btn btn-primary">show</button></a>
+                    <a href="{{ path('app_type_abonnement_edit', {'id': type_abonnement.id}) }}"><button type="button" class="btn btn-dark">edit</button></a>
+                    <a href="{{ path('app_type_abonnement_delete', {'id': type_abonnement.id}) }}"><button type="button" class="btn btn-dark disabled">delete</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_abonnement_new') }}"><button type="button" class="btn btn-primary">add new membership</button></a>
+{% endblock %}

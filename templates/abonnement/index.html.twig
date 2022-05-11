@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}listes des  abonnements {% endblock %}
+
+{% block body %}
+    <h1>listes des  abonnements </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonnement in abonnements %}
+            <tr>
+                <td>{{ abonnement.id }}</td>
+                <td>{{ abonnement.DateDebut ? abonnement.DateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ abonnement.DateFin ? abonnement.DateFin|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_abonnement_show', {'id': abonnement.id}) }}"><button type="button" class="btn btn-primary">show</button</a>
+                    <a href="{{ path('app_abonnement_edit', {'id': abonnement.id}) }}"><button type="button" class="btn btn-dark disabled">edit</button></a>
+                    <a href="{{ path('app_abonnement_edit', {'id': abonnement.id}) }}"><button type="button" class="btn btn-dark disabled">delete</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_abonnement_new') }}"><button type="button" class="btn btn-primary">add new membership</button></a>
+{% endblock %}

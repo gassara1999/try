@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Coaches{% endblock %}
+
+{% block body %}
+    <h1>Edit Coaches</h1>
+
+    {{ include('coaches/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_coaches_index') }}"><button type="button" class="btn btn-primary">back to list</button></a>
+
+    {{ include('coaches/_delete_form.html.twig') }}
+{% endblock %}
